@@ -1,0 +1,53 @@
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.containerCompras {
+    background-color: rgb(204, 228, 231);
+    max-width: 500px;
+    width: 90%;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 16px;
+}
+
+.selectForm {
+    background-color: rgb(235, 235, 235);
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.select {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.input {
+    background-color: rgb(235, 235, 235);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.validacaoCartao {
+    background-color: rgb(235, 235, 235);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 5px;
+    border-radius: 4px;
+}
