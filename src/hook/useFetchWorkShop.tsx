@@ -2,9 +2,6 @@ import { useEffect, useState } from "react";
 import workshops from "../function/workshop";
 
 type Workshop = {
-  map(
-    arg0: (post: unknown) => import("react/jsx-runtime").JSX.Element
-  ): import("react").ReactNode;
   id: number;
   title: string;
   imageUrl: string;
@@ -17,7 +14,7 @@ type Workshop = {
 };
 
 function useFecthWorkShop() {
-  const [post, setPost] = useState<Workshop | undefined>();
+  const [post, setPost] = useState<Workshop[] | null>(null);
 
   useEffect(() => {
     const fetchHandleCall = async () => {

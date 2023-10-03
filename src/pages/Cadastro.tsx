@@ -1,5 +1,7 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "./Compras.module.css";
 
 interface FormData {
   nome: string;
@@ -11,6 +13,7 @@ interface FormData {
 }
 
 const Cadastro = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
     nome: "",
     cpf: "",
@@ -19,6 +22,10 @@ const Cadastro = () => {
     senha: "",
     repetirSenha: "",
   });
+
+  const handleBack = () => {
+    navigate("/");
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -29,7 +36,20 @@ const Cadastro = () => {
     }
 
     try {
-      const response = await axios.post("/api/cadastrar-usuario", formData);
+      const response = await axios.post(
+        "http://localhost:5000/workshops",
+        formData
+      );
+
+      setFormData({
+        nome: "",
+        cpf: "",
+        email: "",
+        telefone: "",
+        senha: "",
+        repetirSenha: "",
+      });
+
       console.log(response);
       alert("Cadastro realizado com sucesso");
     } catch (error) {
@@ -101,6 +121,7 @@ const Cadastro = () => {
           required
         />
         <button type="submit">Cadastro</button>
+        <button onClick={handleBack}>Fechar</button>
       </form>
     </div>
   );

@@ -6,10 +6,21 @@ import style from "./home.module.css";
 
 import useFecthWorkShop from "../hook/useFetchWorkShop";
 
+interface Workshop {
+  id: number;
+  title: string;
+  imageUrl: string;
+  desc: string;
+  category: string;
+  date: string;
+  price: number;
+}
+type Post = Workshop;
+
 const Home: React.FC = () => {
   const { addCartItem, removeCartItem } = useContext(CartContext);
 
-  const post = useFecthWorkShop();
+  const post: Post[] | null = useFecthWorkShop();
 
   if (!post) {
     return <div>Carregando....</div>;
