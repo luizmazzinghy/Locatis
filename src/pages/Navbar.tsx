@@ -26,6 +26,9 @@ const Navbar = () => {
   const handleClickCadastro = () => {
     navigate("/cadastro");
   };
+  const handleClickCadastroUsuario = () => {
+    navigate("/cadastroUsuario");
+  };
 
   const handleOpenCart = () => {
     setIsCartOpen(true);
@@ -69,6 +72,8 @@ const Navbar = () => {
         />
         <button className={style.searchButton}>Pesquisar</button>
         <button onClick={handleClickCadastro}>Cadastro</button>
+        <button onClick={handleClickCadastroUsuario}>Usuario</button>
+
         <div className={style.btn3}>
           <div>
             <button onClick={handleOpenCart} className={style.btnCarr}>

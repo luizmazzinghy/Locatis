@@ -4,23 +4,25 @@ import { useNavigate } from "react-router-dom";
 import "./Compras.module.css";
 
 interface FormData {
-  nome: string;
-  cpf: string;
-  email: string;
-  telefone: string;
-  senha: string;
-  repetirSenha: string;
+  title: string;
+  desc: string;
+  price: string;
+  date: string;
+  category: string;
+  userId: string;
+  imageUrl: string;
 }
 
 const Cadastro = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
-    nome: "",
-    cpf: "",
-    email: "",
-    telefone: "",
-    senha: "",
-    repetirSenha: "",
+    title: "",
+    desc: "",
+    price: "",
+    date: "",
+    category: "",
+    userId: "",
+    imageUrl: "",
   });
 
   const handleBack = () => {
@@ -30,11 +32,6 @@ const Cadastro = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (formData.senha !== formData.repetirSenha) {
-      alert("As senhas não coincidem");
-      return;
-    }
-
     try {
       const response = await axios.post(
         "http://localhost:5000/workshops",
@@ -42,18 +39,19 @@ const Cadastro = () => {
       );
 
       setFormData({
-        nome: "",
-        cpf: "",
-        email: "",
-        telefone: "",
-        senha: "",
-        repetirSenha: "",
+        title: "",
+        desc: "",
+        price: "",
+        date: "",
+        category: "",
+        userId: "",
+        imageUrl: "",
       });
 
       console.log(response);
-      alert("Cadastro realizado com sucesso");
+      alert("Cadastro do curso realizado com sucesso");
     } catch (error) {
-      alert("Erro ao cadastrar usuário");
+      alert("Erro ao cadastrar curso");
     }
   };
 
@@ -66,57 +64,66 @@ const Cadastro = () => {
     <div>
       <form onSubmit={handleSubmit}>
         <h1>Cadastro</h1>
-        <label htmlFor="nome">Nome:</label>
+        <label htmlFor="title">Titulo:</label>
         <input
           type="text"
-          name="nome"
-          placeholder="Nome completo"
-          value={formData.nome}
+          name="title"
+          placeholder="Digite um titulo"
+          value={formData.title}
           onChange={handleChange}
           required
         />
-        <label htmlFor="cpf">CPF:</label>
+        <label htmlFor="desc">Descrição:</label>
+        <input
+          type="text"
+          name="desc"
+          placeholder="Digite uma descrição"
+          value={formData.desc}
+          onChange={handleChange}
+          required
+        />
+        <label htmlFor="number">Preço</label>
         <input
           type="number"
-          name="cpf"
-          placeholder="Digite o cpf"
-          value={formData.cpf}
+          name="price"
+          placeholder="Digite um preço"
+          value={formData.price}
           onChange={handleChange}
           required
         />
-        <label htmlFor="email">E-mail</label>
+        <label htmlFor="date">Data</label>
         <input
-          type="email"
-          name="email"
-          placeholder="Digite seu e-mail"
-          value={formData.email}
+          type="date"
+          name="date"
+          placeholder="Digite uma data"
+          value={formData.date}
           onChange={handleChange}
           required
         />
-        <label htmlFor="telefone">Telefone</label>
+        <label htmlFor="category">Categoria</label>
+        <input
+          type="text"
+          name="category"
+          placeholder="Digite uma categoria"
+          value={formData.category}
+          onChange={handleChange}
+          required
+        />
+        <label htmlFor="number">UserId</label>
         <input
           type="number"
-          name="telefone"
-          placeholder="Digite o seu telefone"
-          value={formData.telefone}
+          name="userId"
+          placeholder="Digite um userId"
+          value={formData.userId}
           onChange={handleChange}
           required
         />
-        <label htmlFor="senha">Senha</label>
+        <label htmlFor="imageUrl">Imagem</label>
         <input
-          type="password"
-          name="senha"
-          placeholder="Digite uma senha"
-          value={formData.senha}
-          onChange={handleChange}
-          required
-        />
-        <label htmlFor="repetirSenha">Repita a senha</label>
-        <input
-          type="password"
-          name="repetirSenha"
-          placeholder="Repita a senha"
-          value={formData.repetirSenha}
+          type="text"
+          name="imageUrl"
+          placeholder="Coloque url de uma imagem"
+          value={formData.imageUrl}
           onChange={handleChange}
           required
         />

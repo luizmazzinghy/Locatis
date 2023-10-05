@@ -40,7 +40,6 @@ const Home: React.FC = () => {
               <div>{post.date}</div>
               <div className={style.price}>
                 R$: {post.price}
-                <div> Id: {post.id}</div>
                 <button
                   onClick={() => {
                     addCartItem(post.id, 1);

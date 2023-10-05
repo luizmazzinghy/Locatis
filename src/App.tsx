@@ -5,7 +5,7 @@ import { CartProvider } from "./context/CartContext";
 import { Route, Routes } from "react-router-dom";
 import Compras from "./pages/Compras";
 import Cadastro from "./pages/Cadastro";
-
+import CadastroUsuario from "./pages/CadastroUsuario";
 function App() {
   return (
     <div>
@@ -16,6 +16,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/compras" element={<Compras />} />
             <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/cadastroUsuario" element={<CadastroUsuario />} />
           </Routes>
         </>
       </CartProvider>
