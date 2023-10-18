@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import workshops from "../function/workshop";
 
 type Workshop = {
-  id: number;
+  _id: number;
   title: string;
   imageUrl: string;
   desc: string;
@@ -15,6 +15,7 @@ type Workshop = {
 
 function useFecthWorkShop() {
   const [post, setPost] = useState<Workshop[] | null>(null);
+  console.log(post, "Post");
 
   useEffect(() => {
     const fetchHandleCall = async () => {

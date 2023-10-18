@@ -7,7 +7,7 @@ import style from "./home.module.css";
 import useFecthWorkShop from "../hook/useFetchWorkShop";
 
 interface Workshop {
-  id: number;
+  _id: number;
   title: string;
   imageUrl: string;
   desc: string;
@@ -29,27 +29,28 @@ const Home: React.FC = () => {
   return (
     <div className={style.main}>
       <ul>
-        {post.map((post) => (
-          <div key={post.id}>
+        {post.map((posts) => (
+          <div key={posts._id}>
             <div className={style.containerDiv}>
               {}
-              <h3 className={style.title}>{post.title}</h3>
-              <img className={style.img} src={post.imageUrl} alt="imagem" />
-              {post.desc}
-              {post.category}
-              <div>{post.date}</div>
+              <h3 className={style.title}>{posts.title}</h3>
+              <img className={style.img} src={posts.imageUrl} alt="imagem" />
+              {posts.desc}
+              {posts.category}
+              <div>{posts.date}</div>
               <div className={style.price}>
-                R$: {post.price}
+                R$: {posts.price}
+                <div>ID:{posts._id}</div>
                 <button
                   onClick={() => {
-                    addCartItem(post.id, 1);
+                    addCartItem(posts._id, 1);
                   }}
                 >
                   <BiPlus />
                 </button>
                 <button
                   onClick={() => {
-                    removeCartItem(post.id, 1);
+                    removeCartItem(posts._id, 1);
                   }}
                 >
                   <BiMinus />

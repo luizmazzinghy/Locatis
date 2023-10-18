@@ -17,10 +17,16 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const post = useFetchWorkShop();
+  console.log(post, "Post");
+  console.log(cartItems, "Itens card");
 
   const handleClick = () => {
     navigate("/compras", { state: { total } });
     handleCloseCart();
+  };
+
+  const handleBack = () => {
+    navigate("/");
   };
 
   const handleClickCadastro = () => {
@@ -40,20 +46,21 @@ const Navbar = () => {
 
   const getTitleById = (productId: number) => {
     const postItem = post?.find(
-      (item: { id: number }) => item.id === productId
+      (item: { _id: number }) => item._id === productId
     );
     return postItem ? postItem.title : "Título não encontrado";
   };
 
   const getPriceById = (productId: number) => {
     const postItem = post?.find(
-      (item: { id: number }) => item.id === productId
+      (item: { _id: number }) => item._id === productId
     );
     return postItem ? postItem.price : 0;
   };
 
   const total = cartItems.reduce((acc, item) => {
     const price = getPriceById(item.productId);
+    console.log(price, "Price");
     return acc + price * item.quantity;
   }, 0);
 
@@ -64,6 +71,7 @@ const Navbar = () => {
           className={style.logo}
           src="https://www.locatis.eu/images/tn_locatis_logo.PNG"
           alt="logo"
+          onClick={handleBack}
         />
         <input
           className={style.searchBar}
@@ -98,7 +106,6 @@ const Navbar = () => {
               {cartItems.map((item) => (
                 <li key={item.productId}>
                   <p>Título: {getTitleById(item.productId)}</p>
-                  <p>ID: {item.productId}</p>
                   <p>Quantidade: {item.quantity}</p>
                   <div>
                     <button

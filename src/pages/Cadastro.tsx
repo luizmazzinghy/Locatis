@@ -9,7 +9,6 @@ interface FormData {
   price: string;
   date: string;
   category: string;
-  userId: string;
   imageUrl: string;
 }
 
@@ -21,7 +20,6 @@ const Cadastro = () => {
     price: "",
     date: "",
     category: "",
-    userId: "",
     imageUrl: "",
   });
 
@@ -44,7 +42,6 @@ const Cadastro = () => {
         price: "",
         date: "",
         category: "",
-        userId: "",
         imageUrl: "",
       });
 
@@ -106,15 +103,6 @@ const Cadastro = () => {
           name="category"
           placeholder="Digite uma categoria"
           value={formData.category}
-          onChange={handleChange}
-          required
-        />
-        <label htmlFor="number">UserId</label>
-        <input
-          type="number"
-          name="userId"
-          placeholder="Digite um userId"
-          value={formData.userId}
           onChange={handleChange}
           required
         />
