@@ -6,9 +6,11 @@ import style from "./Navbar.module.css";
 import { useNavigate } from "react-router-dom";
 
 import { BiMinus, BiPlus } from "react-icons/bi";
-import useFetchWorkShop from "../hook/useFetchWorkShop";
+import { useFecthWorkShop } from "../hook/useFetchWorkShop";
 
-Modal.setAppElement("#root");
+if (process.env.NODE_ENV !== "test") {
+  Modal.setAppElement("#root");
+}
 
 const Navbar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -16,7 +18,7 @@ const Navbar = () => {
     useContext(CartContext);
   const navigate = useNavigate();
 
-  const post = useFetchWorkShop();
+  const post = useFecthWorkShop();
   console.log(post, "Post");
   console.log(cartItems, "Itens card");
 
@@ -96,6 +98,7 @@ const Navbar = () => {
         isOpen={isCartOpen}
         onRequestClose={handleCloseCart}
         contentLabel="Carrinho de Compras"
+        ariaHideApp={false}
       >
         <h2>Carrinho de Compras</h2>
         {cartItems.length === 0 ? (

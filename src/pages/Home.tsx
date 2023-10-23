@@ -4,7 +4,7 @@ import { CartContext } from "../context/CartContext";
 
 import style from "./home.module.css";
 
-import useFecthWorkShop from "../hook/useFetchWorkShop";
+import { useFecthWorkShop } from "../hook/useFetchWorkShop";
 
 interface Workshop {
   _id: number;

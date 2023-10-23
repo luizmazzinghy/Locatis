@@ -13,9 +13,8 @@ type Workshop = {
   setCount: number;
 };
 
-function useFecthWorkShop() {
+export function useFecthWorkShop() {
   const [post, setPost] = useState<Workshop[] | null>(null);
-  console.log(post, "Post");
 
   useEffect(() => {
     const fetchHandleCall = async () => {
@@ -32,4 +31,3 @@ function useFecthWorkShop() {
 
   return post;
 }
-export default useFecthWorkShop;
