@@ -21,6 +21,7 @@ const Home: React.FC = () => {
   const { addCartItem, removeCartItem } = useContext(CartContext);
 
   const post: Post[] | null = useFecthWorkShop();
+  console.log(post, "Meus posts");
 
   if (!post) {
     return <div>Carregando....</div>;
@@ -32,16 +33,18 @@ const Home: React.FC = () => {
         {post.map((posts) => (
           <div key={posts._id}>
             <div className={style.containerDiv}>
-              {}
               <h3 className={style.title}>{posts.title}</h3>
-              <img className={style.img} src={posts.imageUrl} alt="imagem" />
-              {posts.desc}
-              {posts.category}
+              <div>
+                <img className={style.img} src={posts.imageUrl} alt="imagem" />
+              </div>
+              <span>{posts.desc}</span>
+              <span>{posts.category}</span>
               <div>{posts.date}</div>
               <div className={style.price}>
-                R$: {posts.price}
-                <div>ID:{posts._id}</div>
+                <span>R$: {posts.price}</span>
+                <div></div>
                 <button
+                  data-testid="buttonAddCart"
                   onClick={() => {
                     addCartItem(posts._id, 1);
                   }}
@@ -49,6 +52,7 @@ const Home: React.FC = () => {
                   <BiPlus />
                 </button>
                 <button
+                  data-testid="buttonRemoveCart"
                   onClick={() => {
                     removeCartItem(posts._id, 1);
                   }}

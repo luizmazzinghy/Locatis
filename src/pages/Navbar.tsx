@@ -3,43 +3,29 @@ import Modal from "react-modal";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { CartContext } from "../context/CartContext";
 import style from "./Navbar.module.css";
-import { useNavigate } from "react-router-dom";
 
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { useFecthWorkShop } from "../hook/useFetchWorkShop";
+import { Link } from "react-router-dom";
 
 if (process.env.NODE_ENV !== "test") {
   Modal.setAppElement("#root");
 }
 
 interface NavbarProps {
-  handleBack: () => void; // Defina o tipo da prop handleBack
+  handleBack: () => void;
 }
 
 const Navbar: React.FC<NavbarProps> = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { cartItems, clearCart, addCartItem, removeCartItem } =
     useContext(CartContext);
-  const navigate = useNavigate();
 
   const post = useFecthWorkShop();
-  console.log(post, "Post");
-  console.log(cartItems, "Itens card");
 
   const handleClick = () => {
-    navigate("/compras", { state: { total } });
+    // navigate("/compras", { state: { total } });
     handleCloseCart();
-  };
-
-  const handleBack = () => {
-    navigate("/");
-  };
-
-  const handleClickCadastro = () => {
-    navigate("/cadastro");
-  };
-  const handleClickCadastroUsuario = () => {
-    navigate("/cadastroUsuario");
   };
 
   const handleOpenCart = () => {
@@ -73,15 +59,21 @@ const Navbar: React.FC<NavbarProps> = () => {
   return (
     <div className={style.container}>
       <div className={style.fixedNavbar}>
-        <img
-          className={style.logo}
-          src="https://www.locatis.eu/images/tn_locatis_logo.PNG"
-          alt="logo"
-          role="button"
-          onClick={handleBack}
-        />
-        <button onClick={handleClickCadastro}>Cadastro</button>
-        <button onClick={handleClickCadastroUsuario}>Usuario</button>
+        <Link to="/">
+          <img
+            className={style.logo}
+            src="https://www.locatis.eu/images/tn_locatis_logo.PNG"
+            alt="logo"
+          />
+        </Link>
+
+        <Link to="/cadastro" data-test="testLink">
+          <button>Cadastro</button>
+        </Link>
+
+        <Link to="/cadastroUsuario">
+          <button>Usuario</button>
+        </Link>
 
         <div className={style.btn3}>
           <div>
@@ -137,7 +129,16 @@ const Navbar: React.FC<NavbarProps> = () => {
             <p>Total: R$ {total}</p>
           </div>
         )}
-        <button onClick={handleClick}>Comprar</button>
+
+        <Link
+          to={{
+            pathname: "/compras",
+            // state: { total },
+          }}
+        >
+          <button onClick={handleClick}>Comprar</button>
+        </Link>
+
         <button onClick={clearCart}>Limpar Carrinho</button>
         <button onClick={handleCloseCart}>Fechar</button>
       </Modal>

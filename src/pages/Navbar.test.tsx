@@ -1,10 +1,9 @@
 import Navbar from "./Navbar";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { CartProvider } from "../context/CartContext";
 import { BrowserRouter } from "react-router-dom";
 
-// Define handleBack function before using it in the tests
 const handleBack = jest.fn();
 
 function renderNavbar() {
@@ -17,9 +16,9 @@ function renderNavbar() {
   );
 }
 
-// test("the navigation bar should be rendered", () => {
-//   renderNavbar();
-// });
+test("the navigation bar should be rendered", () => {
+  renderNavbar();
+});
 
 // test("should render the logo", () => {
 //   renderNavbar();
@@ -27,26 +26,12 @@ function renderNavbar() {
 //   expect(logoImage).toBeInTheDocument();
 // });
 
-// test("check if clicking the logo triggers handleBack", () => {
-//   renderNavbar();
-//   const logoImage = screen.getByTestId("button");
-
-//   fireEvent.click(logoImage);
-//   // expect(handleBack).toHaveBeenCalled();
-// });
-
-test("Se eu clicar vai chamar a função correta?", () => {
+test("check if clicking the logo triggers handleBack", () => {
   renderNavbar();
-
   const logoImage = screen.getByAltText(/logo/i);
 
-  // Vejo que o botão não foi clicado
-
-  // Clicando no botão
   fireEvent.click(logoImage);
-  expect(window.location.pathname).toBe("/");
-  // O botão foi clicado
-  // expect(onClick).toHaveBeenCalledTimes(1);
+  expect(handleBack).toHaveBeenCalledTimes(1);
 });
 
 // test("verify if the logo image has the correct src attribute", () => {
@@ -56,4 +41,10 @@ test("Se eu clicar vai chamar a função correta?", () => {
 //     "src",
 //     "https://www.locatis.eu/images/tn_locatis_logo.PNG"
 //   );
+// });
+
+// test("verificar se o link direciona para a home page", () => {
+//   renderNavbar();
+//   const homeLink = screen.getByTestId("testLink");
+//   expect(homeLink).toBeInTheDocument();
 // });

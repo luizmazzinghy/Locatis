@@ -11,7 +11,11 @@ function App() {
     <div>
       <CartProvider>
         <>
-          <Navbar />
+          <Navbar
+            handleBack={function (): void {
+              throw new Error("Function not implemented.");
+            }}
+          />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/compras" element={<Compras />} />
