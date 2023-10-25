@@ -12,7 +12,11 @@ if (process.env.NODE_ENV !== "test") {
   Modal.setAppElement("#root");
 }
 
-const Navbar = () => {
+interface NavbarProps {
+  handleBack: () => void; // Defina o tipo da prop handleBack
+}
+
+const Navbar: React.FC<NavbarProps> = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { cartItems, clearCart, addCartItem, removeCartItem } =
     useContext(CartContext);
@@ -73,14 +77,9 @@ const Navbar = () => {
           className={style.logo}
           src="https://www.locatis.eu/images/tn_locatis_logo.PNG"
           alt="logo"
+          role="button"
           onClick={handleBack}
         />
-        <input
-          className={style.searchBar}
-          type="text"
-          placeholder="Pesquisar"
-        />
-        <button className={style.searchButton}>Pesquisar</button>
         <button onClick={handleClickCadastro}>Cadastro</button>
         <button onClick={handleClickCadastroUsuario}>Usuario</button>
 
