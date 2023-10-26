@@ -13,7 +13,7 @@ if (process.env.NODE_ENV !== "test") {
 }
 
 interface NavbarProps {
-  handleBack: () => void;
+  handleOpenCart: () => void;
 }
 
 const Navbar: React.FC<NavbarProps> = () => {
@@ -24,7 +24,6 @@ const Navbar: React.FC<NavbarProps> = () => {
   const post = useFecthWorkShop();
 
   const handleClick = () => {
-    // navigate("/compras", { state: { total } });
     handleCloseCart();
   };
 
@@ -67,17 +66,29 @@ const Navbar: React.FC<NavbarProps> = () => {
           />
         </Link>
 
-        <Link to="/cadastro" data-test="testLink">
-          <button>Cadastro</button>
+        <Link
+          className={style.link}
+          to="/cadastro"
+          data-testid="cadastroWorkshop"
+        >
+          <span className={style.Button}>Cadastro</span>
         </Link>
 
-        <Link to="/cadastroUsuario">
-          <button>Usuario</button>
+        <Link
+          className={style.link}
+          to="/cadastroUsuario"
+          data-testid="cadastroUsuario"
+        >
+          <span className={style.Button}>Usuario</span>
         </Link>
 
         <div className={style.btn3}>
           <div>
-            <button onClick={handleOpenCart} className={style.btnCarr}>
+            <button
+              aria-label="cart"
+              onClick={handleOpenCart}
+              className={style.btnCarr}
+            >
               <AiOutlineShoppingCart />
             </button>
           </div>
@@ -130,12 +141,7 @@ const Navbar: React.FC<NavbarProps> = () => {
           </div>
         )}
 
-        <Link
-          to={{
-            pathname: "/compras",
-            // state: { total },
-          }}
-        >
+        <Link to={`/compras?total=${total}`}>
           <button onClick={handleClick}>Comprar</button>
         </Link>
 

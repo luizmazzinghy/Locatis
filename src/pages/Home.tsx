@@ -42,7 +42,6 @@ const Home: React.FC = () => {
               <div>{posts.date}</div>
               <div className={style.price}>
                 <span>R$: {posts.price}</span>
-                <div></div>
                 <button
                   data-testid="buttonAddCart"
                   onClick={() => {

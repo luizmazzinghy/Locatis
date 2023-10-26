@@ -1,11 +1,11 @@
 import { useState } from "react";
 import style from "./Compras.module.css";
 
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const Compras = () => {
-  const location = useLocation();
-  const { total } = location.state || {};
+  const { total } = useParams();
+
   const [select, setSelect] = useState("");
   const [numeroCartao, setNumeroCartao] = useState("");
   const [nomeCartao, setNomeCartao] = useState("");

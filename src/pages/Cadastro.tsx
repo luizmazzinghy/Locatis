@@ -60,7 +60,7 @@ const Cadastro = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <h1>Cadastro</h1>
+        <h1>Cadastro Workshop</h1>
         <label htmlFor="title">Titulo:</label>
         <input
           type="text"

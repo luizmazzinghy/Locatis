@@ -12,7 +12,7 @@ function App() {
       <CartProvider>
         <>
           <Navbar
-            handleBack={function (): void {
+            handleOpenCart={function (): void {
               throw new Error("Function not implemented.");
             }}
           />

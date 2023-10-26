@@ -1,21 +1,11 @@
 import { useState, ChangeEvent, FormEvent } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Compras.module.css";
-
-interface FormData {
-  nome: string;
-  sobreNome: string;
-  email: string;
-  dateNacimento: string;
-  endereco: string;
-  senha: string;
-  repetirSenha: string;
-}
+import { NewUser, createUser } from "../function/createUser";
 
 const Cadastro = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<NewUser>({
     nome: "",
     sobreNome: "",
     email: "",
@@ -30,18 +20,16 @@ const Cadastro = () => {
   };
 
   const handleSubmit = async (e: FormEvent) => {
+    console.log("AQUI");
     e.preventDefault();
 
-    if (formData.senha !== formData.repetirSenha) {
-      alert("As senhas não coincidem");
-      return;
-    }
+    // if (formData.senha !== formData.repetirSenha) {
+    //   alert("As senhas não coincidem");
+    //   return;
+    // }
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/usuarios",
-        formData
-      );
+      const response = createUser(formData);
 
       setFormData({
         nome: "",
@@ -54,6 +42,7 @@ const Cadastro = () => {
       });
 
       console.log(response);
+      return;
       alert("Cadastro realizado com sucesso");
     } catch (error) {
       alert("Erro ao cadastrar usuário");
@@ -68,71 +57,89 @@ const Cadastro = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <h1>Cadastro</h1>
-        <label htmlFor="nome">Nome:</label>
+        <h1>CadastroUsuario</h1>
+        <label htmlFor="nome" aria-label="Nome">
+          <span>Nome</span>
+        </label>
         <input
+          aria-label="nome"
+          data-tesdid="nome"
           type="text"
           name="nome"
           placeholder="Nome"
           value={formData.nome}
           onChange={handleChange}
-          required
+          // required
         />
-        <label htmlFor="sobreNome">SobreNome:</label>
+        <label htmlFor="sobreNome">
+          <span>SobreNome</span>
+        </label>
         <input
           type="text"
           name="sobreNome"
           placeholder="SobreNome"
           value={formData.sobreNome}
           onChange={handleChange}
-          required
+          // required
         />
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">
+          <span>Email</span>
+        </label>
         <input
           type="email"
           name="email"
           placeholder="Email"
           value={formData.email}
           onChange={handleChange}
-          required
+          // required
         />
-        <label htmlFor="data">Data</label>
+        <label htmlFor="data">
+          <span>Data</span>
+        </label>
         <input
           type="date"
           name="dateNacimento"
           placeholder="Data Nacimento"
           value={formData.dateNacimento}
           onChange={handleChange}
-          required
+          // required
         />
-        <label htmlFor="endereco">Endereco</label>
+        <label htmlFor="endereco">
+          <span>Endereco</span>
+        </label>
         <input
           type="text"
           name="endereco"
           placeholder="Digite seu endereco"
           value={formData.endereco}
           onChange={handleChange}
-          required
+          // required
         />
-        <label htmlFor="senha">Senha</label>
+        <label htmlFor="senha">
+          <span>Senha</span>
+        </label>
         <input
           type="password"
           name="senha"
           placeholder="Senha"
           value={formData.senha}
           onChange={handleChange}
-          required
+          // required
         />
-        <label htmlFor="repetirSenha">Repetir Senha</label>
+        <label htmlFor="repetirSenha">
+          <span>Repetir Senha</span>
+        </label>
         <input
           type="password"
           name="repetirSenha"
           placeholder="Repetir a senha"
           value={formData.repetirSenha}
           onChange={handleChange}
-          required
+          // required
         />
-        <button type="submit">Cadastro</button>
+        <button type="submit">
+          <span>Cadastro</span>
+        </button>
         <button onClick={handleBack}>Fechar</button>
       </form>
     </div>
