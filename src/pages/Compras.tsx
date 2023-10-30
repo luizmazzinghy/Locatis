@@ -33,7 +33,7 @@ const Compras = () => {
             <h1>Formulario de compras</h1>
           </div>
           <div className={style.selectForm}>
-            <label htmlFor="text">Escolha eu cartão</label>
+            <label htmlFor="text">Escolha seu cartão</label>
             <select
               className={style.select}
               onChange={(e) => setSelect(e.target.value)}
@@ -48,7 +48,9 @@ const Compras = () => {
             </select>
           </div>
           <div className={style.input}>
-            <label htmlFor="number">Número do cartão: </label>
+            <label htmlFor="number" aria-label="Número do cartão">
+              Número do cartão:
+            </label>
             <input
               type="number"
               required

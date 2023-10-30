@@ -29,6 +29,7 @@ const Cadastro = () => {
     // }
 
     try {
+      console.log({ formData });
       const response = createUser(formData);
 
       setFormData({
@@ -62,27 +63,28 @@ const Cadastro = () => {
           <span>Nome</span>
         </label>
         <input
-          aria-label="nome"
-          data-tesdid="nome"
+          aria-label="cadastroNome"
           type="text"
           name="nome"
           placeholder="Nome"
           value={formData.nome}
           onChange={handleChange}
+
           // required
         />
-        <label htmlFor="sobreNome">
+        <label htmlFor="Sobrenome">
           <span>SobreNome</span>
         </label>
         <input
+          aria-label="sobreNome"
           type="text"
           name="sobreNome"
-          placeholder="SobreNome"
+          placeholder="sobreNome"
           value={formData.sobreNome}
           onChange={handleChange}
           // required
         />
-        <label htmlFor="email">
+        <label htmlFor="email" aria-label="Email">
           <span>Email</span>
         </label>
         <input
@@ -97,6 +99,7 @@ const Cadastro = () => {
           <span>Data</span>
         </label>
         <input
+          aria-label="Data de Nascimento"
           type="date"
           name="dateNacimento"
           placeholder="Data Nacimento"
@@ -104,7 +107,7 @@ const Cadastro = () => {
           onChange={handleChange}
           // required
         />
-        <label htmlFor="endereco">
+        <label htmlFor="endereco" aria-label="Endereco">
           <span>Endereco</span>
         </label>
         <input
@@ -115,7 +118,7 @@ const Cadastro = () => {
           onChange={handleChange}
           // required
         />
-        <label htmlFor="senha">
+        <label htmlFor="senha" aria-label="Senha">
           <span>Senha</span>
         </label>
         <input
@@ -126,7 +129,7 @@ const Cadastro = () => {
           onChange={handleChange}
           // required
         />
-        <label htmlFor="repetirSenha">
+        <label htmlFor="repetirSenha" aria-label="Repetir Senha">
           <span>Repetir Senha</span>
         </label>
         <input
