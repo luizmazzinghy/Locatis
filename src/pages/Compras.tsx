@@ -14,6 +14,9 @@ const Compras = () => {
   const [numeroCpf, setNumeroCpf] = useState("");
   const [email, setEmail] = useState("");
 
+  console.log(numeroCpf, "cpf");
+  console.log(numeroCartao, "numeroCartao");
+
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setSelect("");
@@ -40,19 +43,28 @@ const Compras = () => {
               value={select}
             >
               <option value=""></option>
-              <option value="masterCard">Master Card</option>
-              <option value="visa">Visa</option>
-              <option value="americanExpress">American Express</option>
-              <option value="elo">Elo</option>
-              <option value="hiperCard">HiperCard</option>
+              <option value="masterCard" role="selectMasterCard">
+                Master Card
+              </option>
+              <option value="visa" role="selectVisa">
+                Visa
+              </option>
+              <option value="americanExpress" role="selectAmericanExpress">
+                American Express
+              </option>
+              <option value="elo" role="selectElo">
+                Elo
+              </option>
+              <option value="hiperCard" role="selectHiperCard">
+                HiperCard
+              </option>
             </select>
           </div>
           <div className={style.input}>
-            <label htmlFor="number" aria-label="Número do cartão">
-              Número do cartão:
-            </label>
+            <label htmlFor="number">Número do cartão:</label>
             <input
-              type="number"
+              data-testid="numeroCartao"
+              type="text"
               required
               onChange={(e) => setNumeroCartao(e.target.value)}
               value={numeroCartao}
@@ -61,6 +73,7 @@ const Compras = () => {
           <div className={style.input}>
             <label htmlFor="text">Nome impresso no cartão: </label>
             <input
+              data-testid="nomeImpresso"
               type="text"
               required
               onChange={(e) => setNomeCartao(e.target.value)}
@@ -71,7 +84,8 @@ const Compras = () => {
             <div>
               <label htmlFor="date">Data de validade: </label>
               <input
-                type="date"
+                data-testid="dataValidade"
+                type="text"
                 required
                 onChange={(e) => setDataValidade(e.target.value)}
                 value={dataValidade}
@@ -80,7 +94,8 @@ const Compras = () => {
             <div>
               <label htmlFor="number">CVV: </label>
               <input
-                type="number"
+                data-testid="numeroSeguranca"
+                type="text"
                 maxLength={3}
                 required
                 onChange={(e) => setCodigo(e.target.value)}
@@ -88,9 +103,10 @@ const Compras = () => {
               />
             </div>
             <div>
-              <label htmlFor="number">CPF do portador do cartão: </label>
+              <label htmlFor="text">CPF do portador do cartão: </label>
               <input
-                type="number"
+                data-testid="cpf"
+                type="text"
                 required
                 onChange={(e) => setNumeroCpf(e.target.value)}
                 value={numeroCpf}
@@ -100,6 +116,7 @@ const Compras = () => {
           <div className={style.input}>
             <label htmlFor="email">Email: </label>
             <input
+              data-testid="email"
               type="email"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
@@ -109,7 +126,9 @@ const Compras = () => {
             <span>R$: {total || 0}</span>
           </div>
           <div>
-            <button type="submit">Enviar</button>
+            <button type="submit">
+              <span>Enviar</span>
+            </button>
           </div>
         </div>
       </form>

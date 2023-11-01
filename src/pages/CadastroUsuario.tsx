@@ -23,10 +23,10 @@ const Cadastro = () => {
     console.log("AQUI");
     e.preventDefault();
 
-    // if (formData.senha !== formData.repetirSenha) {
-    //   alert("As senhas não coincidem");
-    //   return;
-    // }
+    if (formData.senha !== formData.repetirSenha) {
+      alert("As senhas não coincidem");
+      return;
+    }
 
     try {
       console.log({ formData });
@@ -43,7 +43,6 @@ const Cadastro = () => {
       });
 
       console.log(response);
-      return;
       alert("Cadastro realizado com sucesso");
     } catch (error) {
       alert("Erro ao cadastrar usuário");
@@ -84,10 +83,11 @@ const Cadastro = () => {
           onChange={handleChange}
           // required
         />
-        <label htmlFor="email" aria-label="Email">
+        <label htmlFor="email">
           <span>Email</span>
         </label>
         <input
+          aria-label="Email"
           type="email"
           name="email"
           placeholder="Email"
@@ -99,18 +99,19 @@ const Cadastro = () => {
           <span>Data</span>
         </label>
         <input
-          aria-label="Data de Nascimento"
-          type="date"
+          data-testid="DateNacimento"
+          type="text"
           name="dateNacimento"
           placeholder="Data Nacimento"
           value={formData.dateNacimento}
           onChange={handleChange}
           // required
         />
-        <label htmlFor="endereco" aria-label="Endereco">
+        <label htmlFor="endereco">
           <span>Endereco</span>
         </label>
         <input
+          aria-label="Endereco"
           type="text"
           name="endereco"
           placeholder="Digite seu endereco"
@@ -118,10 +119,11 @@ const Cadastro = () => {
           onChange={handleChange}
           // required
         />
-        <label htmlFor="senha" aria-label="Senha">
+        <label htmlFor="senha">
           <span>Senha</span>
         </label>
         <input
+          data-testid="Senha"
           type="password"
           name="senha"
           placeholder="Senha"
@@ -129,10 +131,11 @@ const Cadastro = () => {
           onChange={handleChange}
           // required
         />
-        <label htmlFor="repetirSenha" aria-label="Repetir Senha">
+        <label htmlFor="repetirSenha">
           <span>Repetir Senha</span>
         </label>
         <input
+          data-testid="RepetirSenha"
           type="password"
           name="repetirSenha"
           placeholder="Repetir a senha"
